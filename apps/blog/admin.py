@@ -12,9 +12,10 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     # вказуємо які поля ми будемо відображати
-    list_display = ["title", "category","created", "is_draft",]
+    list_display = ["title", "category","created", "is_draft"]
     list_filter = ["category", "is_draft", "created"]
-    # filter_horizontal = ["tags"]
+    # додаємо справа вікно для додавання тегів
+    filter_horizontal = ["tags"]
 
 
 

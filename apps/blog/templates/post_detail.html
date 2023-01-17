@@ -26,7 +26,7 @@
                             <ul>
                                 <li>
                                     <ul class="inner-tag">
-                                    
+{#                                        доступаємося до всіх тегів вибраного поста (m2m fields) та ітеруємо їх#}
                                         {% for tag in object.tags.all %}
                                         <li>
                                             <a href="#">{{tag.name}}</a>
