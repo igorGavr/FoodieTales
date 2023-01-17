@@ -1,22 +1,30 @@
 <div class="col-lg-4 sidebar-widget-area sidebar-break-md">
     <div class="widget">
         <div class="section-heading heading-dark">
-            <h3 class="item-heading">Последние посты</h3>
+            <h3 class="item-heading">LATEST BLOG</h3>
         </div>
         <div class="widget-blog-post">
             <ul class="block-list">
-             {% for lp in latest_posts %} 
+{#            рендеримо останні пости #}
+             {% for post in latest_posts %}
                 <li class="single-item">
                     <div class="item-img">
-                        <a href="{% url 'post_detail' lp.id %}"><img src="{{lp.image.url}}" alt="Post"></a>
+                        <a href="#"><img src="{{post.image.url}}" alt="Post"></a>
                     </div>
                     <div class="item-content">
                         <div class="item-post-date">
                             <a href="#"><i class="fas fa-clock"></i>
-                               {{ lp.created }}</a></div>
-                        <h4 class="item-title"><a href="{% url 'post_detail' lp.id %}">{{lp.title}}</a></h4>
-                        <div class="item-post-by"><a href="single-blog.html"><i class="fas fa-user"></i><span>by</span>
-                                {{ lp.author.username }}</a></div>
+                               {{ post.created }}</a></div>
+                        <h4 class="item-title"><a href="#">{{post.title}}</a></h4>
+                        <div class="item-post-by">
+                            <a href="single-blog.html">
+                                <i class="fas fa-user">
+
+                                </i>
+                                <span>by</span>
+                                {{ post.author.username }}
+                            </a>
+                        </div>
                     </div>
                 </li>
               {% endfor %}
@@ -45,18 +53,21 @@
     </div>
     <div class="widget">
         <div class="section-heading heading-dark">
-            <h3 class="item-heading">Категории</h3>
+            <h3 class="item-heading">CATEGORIES</h3>
         </div>
         <div class="widget-categories">
             <ul>
+{#                Пробігаємося по категоріях які ми взяли з контексту   #}
+{#                та виводимо їх назви  #}
                 {% for category in categories  %}
                     <li>
+{#                        прописуємо силку та передаємо category.slug#}
                         <a href="{% url 'post_category_list' category.slug %}">{{category.name}}
+{#                            Використовуючи зворотній звязок related_name="posts"  рахуємо кількість постів кожної категорії#}
                             <span>{{ category.posts.count }}</span>
                         </a>
                     </li>
                 {% endfor %}
-              
             </ul>
         </div>
     </div>

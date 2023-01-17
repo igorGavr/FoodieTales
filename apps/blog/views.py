@@ -40,26 +40,28 @@ class PostListView(ListView):
     template_name = "post_list.html"
     model = Post
     queryset = Post.objects.filter(is_draft=False)
-#
-#     # Отправка данных в шаблон через данный метод
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         latest_posts = Post.objects.filter(is_draft=False).order_by("-created")
-#         if len(latest_posts) < 4:
-#             context["latest_posts"] = latest_posts
-#         else:
-#             context["latest_posts"] = latest_posts[:4]
-#
-#         context["categories"] = Category.objects.all()
-#
-#         return context
-#
-#     def get_queryset(self):
-#         category_slug = self.kwargs.get("category_slug")
-#         if category_slug:
-#             qs = Post.objects.filter(is_draft=False, category__slug=category_slug)
-#             return qs
-#         return Post.objects.filter(is_draft=False)
+
+    # Передаваємо останні пости та категорії в контексті
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        latest_posts = Post.objects.filter(is_draft=False).order_by("-created")
+        if len(latest_posts) < 4:
+            context["latest_posts"] = latest_posts
+        else:
+            context["latest_posts"] = latest_posts[:3]
+
+        context["categories"] = Category.objects.all()
+        return context
+
+    # Переоприділяємо метод get_queryset
+    def get_queryset(self):
+        category_slug = self.kwargs.get("category_slug")
+        # Якщо користувач передає category_slug то ми фільтруємо queryset по ньому
+        if category_slug:
+            queryset = Post.objects.filter(is_draft=False, category__slug=category_slug)
+            return queryset
+        # в іншому випадку повертаємо всі пости
+        return Post.objects.filter(is_draft=False)
 #
 #
 # class PostDetailView(DetailView):

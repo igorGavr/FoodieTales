@@ -34,7 +34,8 @@
                         </div>
                         <div class="item-content">
                             <ul class="entry-meta">
-                                <li><a href="#"><i class="fas fa-clock"></i>{{ post.created}}</a></li>
+{#                                форматуємо дату  post.created|date:'Y-m-d H:i'  #}
+                                <li><a href="#"><i class="fas fa-clock"></i>{{ post.created }}</a></li>
                                 <li><a href="#"><i class="fas fa-user"></i>by <span>{{ post.author.username }}</span></a></li>
                                 <li><a href="#"><i class="fas fa-comments"></i>Comments <span>(03)</span></a></li>
                                 <li><a href="#"><i class="fas fa-heart"></i><span>59</span></a></li>
