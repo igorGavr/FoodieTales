@@ -13,5 +13,6 @@ urlpatterns = [
         views.PostListView.as_view(),
         name="post_category_list"
          ),
-    # path('post/detail/<int:pk>/',views.PostDetailView.as_view(), name="post_detail"),
+    # вивід окремого поста
+    path('post/detail/<int:pk>/',views.PostDetailView.as_view(), name="post_detail"),
 ]

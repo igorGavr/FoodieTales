@@ -28,7 +28,7 @@
                 {% for post in object_list %}
                     <div class="blog-box-layout1">
                         <div class="item-figure">
-                            <a href="#">
+                            <a href="{% url 'post_detail' post.id %}">
                                 <img src="{{ post.image.url }}" alt="Blog">
                             </a>
                         </div>
@@ -40,9 +40,9 @@
                                 <li><a href="#"><i class="fas fa-comments"></i>Comments <span>(03)</span></a></li>
                                 <li><a href="#"><i class="fas fa-heart"></i><span>59</span></a></li>
                             </ul>
-                            <h3 class="item-title"><a href="#"> {{ post.title }} </a></h3>
+                            <h3 class="item-title"><a href="{% url 'post_detail' post.id %}"> {{ post.title }} </a></h3>
                             <p>{{ post.description }}</p>
-                            <a href="#" class="item-btn">Continue Reading<i class="flaticon-next"></i></a>
+                            <a href="{% url 'post_detail' post.id %}" class="item-btn">Continue Reading<i class="flaticon-next"></i></a>
                         </div>
                     </div>
                 {% endfor %}

@@ -26,14 +26,15 @@ class CategoryListView(ListView):
     template_name = "category_list.html"
     model = Category
     queryset = Category.objects.all()
+    # В шаблоні наш queryset доступний в зміні object_list
 
 
-def get_categories(request):
-    categories = Category.objects.all()
-    context = {
-        "categories": categories
-    }
-    return render(request, 'category_list.html', context)
+# def get_categories(request):
+#     categories = Category.objects.all()
+#     context = {
+#         "categories": categories
+#     }
+#     return render(request, 'category_list.html', context)
 
 
 class PostListView(ListView):
@@ -62,25 +63,26 @@ class PostListView(ListView):
             return queryset
         # в іншому випадку повертаємо всі пости
         return Post.objects.filter(is_draft=False)
-#
-#
-# class PostDetailView(DetailView):
-#     template_name = "post_detail.html"
-#     model = Post
-#
-#     # pk=id
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         latest_posts = Post.objects.filter(is_draft=False).order_by("-created")
-#         if len(latest_posts) < 4:
-#             context["latest_posts"] = latest_posts
-#         else:
-#             context["latest_posts"] = latest_posts[:4]
-#
-#         context["categories"] = Category.objects.all()
-#
-#         return context
+
+
+class PostDetailView(DetailView):
+    template_name = "post_detail.html"
+    model = Post
+    # В шаблоні наш запис доступний в зміні object
+
+    # переоприділяємо context та додаємо туди дані для відображення
+    # останніх постів та категорій
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        latest_posts = Post.objects.filter(is_draft=False).order_by("-created")
+        if len(latest_posts) < 4:
+            context["latest_posts"] = latest_posts
+        else:
+            context["latest_posts"] = latest_posts[:3]
+
+        context["categories"] = Category.objects.all()
+
+        return context
 
 # Как бы выглядела логика , если бы писали на функциях 
 # def get_detail_post(request,pk):

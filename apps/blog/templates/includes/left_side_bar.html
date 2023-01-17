@@ -9,13 +9,13 @@
              {% for post in latest_posts %}
                 <li class="single-item">
                     <div class="item-img">
-                        <a href="#"><img src="{{post.image.url}}" alt="Post"></a>
+                        <a href="{% url 'post_detail' post.id %}"><img src="{{post.image.url}}" alt="Post"></a>
                     </div>
                     <div class="item-content">
                         <div class="item-post-date">
                             <a href="#"><i class="fas fa-clock"></i>
                                {{ post.created }}</a></div>
-                        <h4 class="item-title"><a href="#">{{post.title}}</a></h4>
+                        <h4 class="item-title"><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h4>
                         <div class="item-post-by">
                             <a href="single-blog.html">
                                 <i class="fas fa-user">
