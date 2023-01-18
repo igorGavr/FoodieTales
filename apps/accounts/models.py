@@ -4,12 +4,16 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email=None, password=None, **extra_fields):
         if not email:
             raise ValueError('The given email must be set')
+        # нормалізуємо email
         email = self.normalize_email(email)
+        # створюємо юзера
         user = self.model(email=email, **extra_fields)
+        # хешування пароля
         user.set_password(password)
         user.save()
         return user
@@ -31,22 +35,20 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
-    email = models.EmailField("Электронная почта", unique=True)
-    profile_img = models.ImageField(upload_to="users/profiles/", blank=True,null=True)
-    about = models.TextField("О себе", null=True,blank=True)
+    email = models.EmailField("Електронна пошта", unique=True)
+    profile_img = models.ImageField(upload_to="users/profiles/", blank=True, null=True)
+    about = models.TextField("Про себе", null=True, blank=True)
+    # null=True працює на рівні бази , а blank=True працює на рівні форми
     instagram = models.URLField(null=True, blank=True)
-    
-    USERNAME_FIELD = 'email' # Какое поле будет использоваться в логинке
+
+    USERNAME_FIELD = 'email'  # Яке поле буде використане при логіні
     REQUIRED_FIELDS = []
 
     objects = UserManager()
 
     class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
-
+        verbose_name = "Юзер"
+        verbose_name_plural = "Юзери"
 
     def __str__(self):
         return self.email
-    
-    

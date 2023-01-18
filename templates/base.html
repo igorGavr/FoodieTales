@@ -162,12 +162,13 @@
                                             </div>
                                         </div>
                                     </li>
+{#                                    робимо перевірку#}
                                     {% if request.user.is_authenticated %}
                                     <li>
-                                        <p style="color:white;">Привет, {{request.user.email }}</p>
+                                        <p style="color:white;">{{request.user.email }}</p>
                                         <a href="{% url 'logout' %}">
                                             <button type="button" class="login-btn">
-                                                Выйти
+                                                Logout
                                             </button>
                                         </a>
                                     </li>
@@ -175,21 +176,23 @@
                                     <li>
                                         <a href="{% url 'login' %}">
                                         <button type="button" class="login-btn">
-                                            <i class="flaticon-profile"></i>Логин
+                                            <i class="flaticon-profile"></i>Login
                                         </button>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{% url 'register' %}">
                                             <button type="button" class="login-btn">
-                                            Регистрация
+                                            Register
                                             </button>
                                         </a>
                                     </li>
                                     {% endif %}
                                     <li>
-                                        <a href="submit-recipe.html" class="fill-btn"><i class="flaticon-plus-1"></i>SUBMIT
-                                            RECIPE</a>
+                                        <a href="submit-recipe.html" class="fill-btn">
+                                            <i class="flaticon-plus-1"></i>
+                                            SUBMIT RECIPE
+                                        </a>
                                     </li>
                                 </ul>
                             </div>

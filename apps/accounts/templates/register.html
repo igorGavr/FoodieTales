@@ -13,7 +13,7 @@
                         </div>
                         <form class="login-form" method="post">
                             {% csrf_token %}
-                         
+{#                            Якщо є помилки то виводимо їх#}
                             {% if form.errors %}
                                 <div class="row">
                                 {% for field in form %}
@@ -32,46 +32,37 @@
                                     {{form.email}}
                                     <!-- <input class="main-input-box" type="text" placeholder="" /> -->
                                 </div>
-                               
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="" class="mb-3"> {{form.first_name.label}}</label>
                                     {{form.first_name}}
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="" class="mb-3">{{form.last_name.label}}</label>
                                     {{form.last_name}}
                                 </div>
-
                             </div>
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <label class="mb-3">{{ form.password1.label }}</label>
                                     {{form.password1}}
                                     <!-- <input class="main-input-box" type="password" placeholder="" /> -->
                                 </div>
-
                                 <div class="col-md-6">
                                     <label class="mb-3">{{ form.password2.label }}</label>
                                     {{form.password2}}
                                     <!-- <input class="main-input-box" type="password" placeholder="" /> -->
                                 </div>
                             </div>
-                            
                             <div class="btn-area">
                                 <button class="btn-fill btn-primary" type="submit" value="Login">
-                                    Зарегистрироваться<i class="flaticon-next"></i>
+                                    Register<i class="flaticon-next"></i>
                                 </button>
-                               
                             </div>
                         </form>
-                      
                     </div>
                 </div>
-        
             </div>
         </div>
     </section>

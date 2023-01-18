@@ -12,6 +12,7 @@
                             <h2 class="item-heading">LOGIN FORM</h2>
                         </div>
                         <form class="login-form" method="post">
+
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
@@ -30,14 +31,13 @@
     
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="lost-password"><a href="#">Забыли пароль?</a></label>
+                                    <label class="lost-password"><a href="#">Lost your password?</a></label>
                                 </div>
                             </div>
                             <div class="btn-area">
                                 <button class="btn-fill btn-primary" type="submit" value="Login">
-                                    Войти<i class="flaticon-next"></i>
+                                    Login<i class="flaticon-next"></i>
                                 </button>
-                               
                             </div>
                         </form>
                         <label>Or Connect With Social Networks</label>

@@ -6,25 +6,24 @@ from apps.accounts.models import User
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
-        label="Электронная почта",
-        widget=forms.EmailInput(attrs={"class":"main-input-box", "placeholder":"example@example.com"})
+        label="Електронна пошта",
+        # настройки поля
+        widget=forms.EmailInput(attrs={"class": "main-input-box", "placeholder": "example@example.com"})
     )
     password = forms.CharField(
         label="Пароль",
-        widget=forms.PasswordInput(attrs={"class":"main-input-box"})
+        widget=forms.PasswordInput(attrs={"class": "main-input-box"})
     )
-
 
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())
 
-    class Meta: 
+    class Meta:
         model = User
         fields = [
-            "email", 
-            "first_name", 
+            "email",
+            "first_name",
             "last_name",
-            ]
-    
+        ]
