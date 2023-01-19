@@ -20,7 +20,8 @@
                                 <li><a href="#"><i class="fas fa-heart"></i><span>59</span></a></li>
                             </ul>
                             <h3 class="item-title">{{object.title }}</h3>
-                            <p class="item-details">{{object.description}}</p>
+{#                            safe - для того щоб інфа яку ми додавали через ckeditor відображалася правильно#}
+                            <p class="item-details">{{object.description|safe}}</p>
                         </div>
                         <div class="tag-share">
                             <ul>
