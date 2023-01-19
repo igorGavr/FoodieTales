@@ -1,7 +1,7 @@
 from wsgiref.util import request_uri
 from django.shortcuts import render
 
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 
 from apps.blog.models import Category, Post
 
@@ -84,13 +84,26 @@ class PostDetailView(DetailView):
 
         return context
 
-# Как бы выглядела логика , если бы писали на функциях 
-# def get_detail_post(request,pk):
-#     try:
-#         post = Post.objects.get(pk=pk)
-#     except Post.DoesNotExist:
-#         pass
-#     context = {
-#         "post":post
-#     }
-#     return render(request, 'post_detail.html', context=context)
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .forms import PostCreateForm
+
+
+# LoginRequiredMixin дозволяє мати доступ тільки залогіненим юзерам
+class PostCreateView(LoginRequiredMixin, FormView):
+    model = Post
+    template_name = "post_create.html"
+    # підключаємо нашу форму
+    form_class = PostCreateForm
+    success_url = reverse_lazy('index')
+    login_url = reverse_lazy('login')
+
+    # цей метод спрацює перед зберіганням форми в базу
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save()
+        return super().form_valid(form)
+
+

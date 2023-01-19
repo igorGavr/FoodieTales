@@ -15,4 +15,6 @@ urlpatterns = [
          ),
     # вивід окремого поста
     path('post/detail/<int:pk>/',views.PostDetailView.as_view(), name="post_detail"),
+    # створення поста
+    path('post/create/', views.PostCreateView.as_view(), name='post_create'),
 ]
