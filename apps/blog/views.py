@@ -7,7 +7,7 @@ from django.views.generic import (
     TemplateView, ListView,
     DetailView, FormView, UpdateView,
 )
-from apps.blog.models import Category, Post
+from apps.blog.models import Category, Post, Comment
 
 
 # Create your views here.
@@ -31,6 +31,7 @@ class CategoryListView(ListView):
     model = Category
     queryset = Category.objects.all()
     # В шаблоні наш queryset доступний в зміні object_list
+
 
 # опис вюшки у вигляді функції
 # def get_categories(request):
@@ -86,13 +87,15 @@ class PostDetailView(DetailView):
             context["latest_posts"] = latest_posts[:3]
 
         context["categories"] = Category.objects.all()
+        # відправляємо форму на сторінку 'blog/post/details'
+        context["comment_form"] = CommentCreateForm()
 
         return context
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import PostCreateForm
+from .forms import PostCreateForm, CommentCreateForm
 
 
 # LoginRequiredMixin дозволяє мати доступ тільки залогіненим юзерам
@@ -131,7 +134,6 @@ class AuthorPostsListView(LoginRequiredMixin, ListView):
             context["latest_posts"] = latest_posts[:3]
         context["categories"] = Category.objects.all()
         return context
-
 
 
 def delete_author_post(request, pk):
@@ -191,3 +193,29 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 #             "form":form
 #         }
 #         return render(request, "post_create.html", context)
+
+
+# вюшка для створення коментів
+# сюди приходять дані з форми з 'post_details.html'
+class CommentCreateView(LoginRequiredMixin, FormView):
+    form_class = CommentCreateForm
+    model = Comment
+
+    def form_valid(self, form):
+        # з силки path('comment/create/<int:post_id>/' дістаємо post_id
+        post_id = self.kwargs.get("post_id")
+        # шукаємо пост
+        post = get_object_or_404(Post, id=post_id)
+        comment = form.save(commit=False)
+        # додаємо автора поста
+        comment.author = self.request.user
+        # додаємо пост
+        comment.post = post
+        comment.save()
+        return super().form_valid(form)
+
+    # після успішного збереження комента перенаправляємо юзера на
+    # сторінку --> path('comment/create/<int:post_id>/'
+    # в kwargs передаємо pk поста
+    def get_success_url(self):
+        return reverse_lazy("post_detail", kwargs={'pk': self.kwargs.get('post_id')})

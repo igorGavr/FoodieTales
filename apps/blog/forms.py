@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -24,3 +24,16 @@ class PostCreateForm(forms.ModelForm):
             "tags": forms.SelectMultiple(attrs={"class": "form-control"}),
             "is_draft": forms.CheckboxInput(attrs={"class": "form-control"}),
         }
+
+
+# forms.Form - створює форму , але не може зберігати дані в базу напряму
+# forms.ModelForm - має звязок з моделю та зберігає дані в базу напряму
+# створюємо форму для створення коментів
+class CommentCreateForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["text", ]
+        widgets = {
+            "text": forms.Textarea(attrs={"class": "form-control"})
+        }
+

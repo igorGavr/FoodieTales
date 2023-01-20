@@ -27,4 +27,7 @@ urlpatterns = [
     path('post/activate/<int:pk>', views.activate_author_post, name="activate_post"),
     # апдейт поста
     path('post/update/<int:pk>', views.PostUpdateView.as_view(), name="update_post"),
+    # створення комента
+    path('comment/create/<int:post_id>/', views.CommentCreateView.as_view(), name="create_comment"),
+
 ]
