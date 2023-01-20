@@ -17,5 +17,14 @@ urlpatterns = [
     path('post/detail/<int:pk>/',views.PostDetailView.as_view(), name="post_detail"),
     # створення поста
     path('post/create/', views.PostCreateView.as_view(), name='post_create'),
+    # отримання всіх постів юзера
     path('post/author/list/', views.AuthorPostsListView.as_view(), name="author_posts"),
+    # видалення поста
+    path('post/delete/<int:pk>/', views.delete_author_post, name="post_delete"),
+    # деактивація поста
+    path('post/deactivate/<int:pk>', views.deactivate_author_post, name="deactivate_post"),
+    # активація поста
+    path('post/activate/<int:pk>', views.activate_author_post, name="activate_post"),
+    # апдейт поста
+    path('post/update/<int:pk>', views.PostUpdateView.as_view(), name="update_post"),
 ]

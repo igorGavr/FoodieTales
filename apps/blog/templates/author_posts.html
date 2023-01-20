@@ -95,9 +95,17 @@
                                             <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                         </ul>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <button type="button" class="btn btn-outline-secondary">Secondary</button>
-                                            <button type="button" class="btn btn-outline-success">Success</button>
-                                            <button type="button" class="btn btn-outline-danger">Danger</button>
+{#                                            редагування поста#}
+                                            <a class="btn btn-outline-secondary" href="{% url 'update_post' post.id %}">Edit</a>
+                                          {#  видалення поста#}
+                                            <a class="btn btn-outline-danger" href="{% url 'post_delete' post.pk %}">Delete</a>
+                                            {% if not post.is_draft %}
+                                                <a class="btn btn-outline-primary"
+                                                   href="{% url 'deactivate_post' post.pk %}">Deactivate</a>
+                                            {% else %}
+                                                <a class="btn btn-success"
+                                                   href="{% url 'activate_post' post.pk %}">Public</a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

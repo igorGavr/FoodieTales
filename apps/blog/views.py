@@ -1,8 +1,12 @@
 from wsgiref.util import request_uri
-from django.shortcuts import render
 
-from django.views.generic import TemplateView, ListView, DetailView, FormView
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 
+from django.views.generic import (
+    TemplateView, ListView,
+    DetailView, FormView, UpdateView,
+)
 from apps.blog.models import Category, Post
 
 
@@ -127,3 +131,38 @@ class AuthorPostsListView(LoginRequiredMixin, ListView):
             context["latest_posts"] = latest_posts[:3]
         context["categories"] = Category.objects.all()
         return context
+
+
+
+def delete_author_post(request, pk):
+    # try:
+    #     post = Post.objects.get(id=pk)
+    # except Post.DoesNotExist:
+    #     raise Http404
+    post = get_object_or_404(Post, id=pk)
+    post.delete()
+    return redirect(reverse_lazy("author_posts"))
+
+
+def deactivate_author_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    post.is_draft = True
+    # update_fields=["is_draft"] - для оптимізації апдейту
+    post.save(update_fields=["is_draft"])
+    return redirect(reverse_lazy("author_posts"))
+
+
+def activate_author_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    post.is_draft = False
+    # update_fields=["is_draft"] - для оптимізації апдейту
+    post.save(update_fields=["is_draft"])
+    return redirect(reverse_lazy("author_posts"))
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    # наша форма
+    form_class = PostCreateForm
+    template_name = "post_create.html"
+    model = Post
+    success_url = reverse_lazy("author_posts")
