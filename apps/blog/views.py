@@ -68,6 +68,7 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     template_name = "post_detail.html"
     model = Post
+
     # В шаблоні наш запис доступний в зміні object
 
     # переоприділяємо context та додаємо туди дані для відображення
@@ -107,3 +108,22 @@ class PostCreateView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
+class AuthorPostsListView(LoginRequiredMixin, ListView):
+    template_name = "author_posts.html"
+    model = Post
+
+    def get_queryset(self):
+        qs = Post.objects.filter(author=self.request.user)
+        return qs
+
+    # переоприділяємо context та додаємо туди дані для відображення
+    # останніх постів та категорій
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        latest_posts = Post.objects.filter(is_draft=False).order_by("-created")
+        if len(latest_posts) < 4:
+            context["latest_posts"] = latest_posts
+        else:
+            context["latest_posts"] = latest_posts[:3]
+        context["categories"] = Category.objects.all()
+        return context

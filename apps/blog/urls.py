@@ -17,4 +17,5 @@ urlpatterns = [
     path('post/detail/<int:pk>/',views.PostDetailView.as_view(), name="post_detail"),
     # створення поста
     path('post/create/', views.PostCreateView.as_view(), name='post_create'),
+    path('post/author/list/', views.AuthorPostsListView.as_view(), name="author_posts"),
 ]
