@@ -32,7 +32,7 @@ class CategoryListView(ListView):
     queryset = Category.objects.all()
     # В шаблоні наш queryset доступний в зміні object_list
 
-
+# опис вюшки у вигляді функції
 # def get_categories(request):
 #     categories = Category.objects.all()
 #     context = {
@@ -166,3 +166,28 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "post_create.html"
     model = Post
     success_url = reverse_lazy("author_posts")
+
+
+# # опис вюшки у вигляді функції
+# def update_post(request, pk):
+#     post = get_object_or_404(Post, id=pk)
+#     if request.method == "GET":
+#         # повертаємо заповнену форму
+#         form = PostCreateForm(instance=post)
+#         context = {
+#             "form": post
+#         }
+#         return render(request, 'post_create.html', context)
+#     elif request.method == "POST":
+#         form = PostCreateForm(
+#             request.POST,
+#             request.FILES,
+#             instance=post #
+#             )
+#         if form.is_valid():
+#             form.save()
+#             return redirect(reverse_lazy("author_posts"))
+#         context = {
+#             "form":form
+#         }
+#         return render(request, "post_create.html", context)
