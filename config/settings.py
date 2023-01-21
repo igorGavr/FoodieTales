@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,9 +41,11 @@ INSTALLED_APPS = [
 
     'ckeditor',
     #apps
-    'apps.blog',
     'apps.accounts',
+    'apps.blog',
+    'apps.shop',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
