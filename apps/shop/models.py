@@ -30,6 +30,14 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = "Товар"
+        verbose_name_plural = "Товари"
+        ordering = ["-created"]
+
+    def __str__(self):
+        return self.name
+
 
 class ProductImages(models.Model):
     product = models.ForeignKey(
