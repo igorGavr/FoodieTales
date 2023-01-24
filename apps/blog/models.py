@@ -63,10 +63,15 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Автор")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="Пост", related_name="comments")
     text = models.TextField("Comment")
+    # 'self' - запис буде зсилатися на запис в цій таблиці
+    parent = models.ForeignKey(
+        'self', verbose_name="Родич", on_delete=models.SET_NULL,
+        blank=True, null=True
+    )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Коментар2"
+        verbose_name = "Коментар"
         verbose_name_plural = "Коментарі"
 
     def __str__(self):

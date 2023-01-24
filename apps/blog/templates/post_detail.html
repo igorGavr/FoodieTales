@@ -150,7 +150,8 @@
 {#                            path('comment/create/<int:post_id>/', #}
 {#                            views.CommentCreateView.as_view(), name="create_comment"),#}
 {#                            також передаємо айдішку поста якого ми коментуємо#}
-                            <form action="{% url 'create_comment' object.id %}" class="leave-form-box" method="post">
+                            <form action="{% url 'create_comment' object.id %}"
+                                  class="leave-form-box" method="post" >
                                 {% csrf_token %}
 {#                                рендеримо форму #}
                                 {{ comment_form }}

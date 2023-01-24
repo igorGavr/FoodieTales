@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from apps.blog.models import Category, Post, Tag
+from apps.blog.models import Category, Post, Tag, Comment
 from django import forms
 
 from ckeditor.widgets import CKEditorWidget
@@ -38,4 +38,8 @@ class CategoryAdmin(admin.ModelAdmin):
     # вказуємо які поля ми будемо відображати
     list_display = ["name", "slug", "id"]
 
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ["author", "post", "parent", "text"]
     

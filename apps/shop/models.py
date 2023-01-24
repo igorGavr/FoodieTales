@@ -29,6 +29,7 @@ class Product(models.Model):
     is_available = models.BooleanField("Доступно", default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    main_image = models.ImageField(upload_to="product/mains/", null=True)
 
     class Meta:
         verbose_name = "Товар"
