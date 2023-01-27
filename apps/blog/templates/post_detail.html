@@ -97,48 +97,48 @@
                                 </div>
                             </div>
                         </div>
-{#                        <div class="next-prev-post">#}
-{#                            <div class="prev-post">#}
-{#                                <a href="#" class="item-figure"><img src="img/blog/prev-post.jpg" alt="Post"></a>#}
-{#                                <div class="item-content">#}
-{#                                    <p>PREVIOUS POST</p>#}
-{#                                    <h3 class="post-title"><a href="#">Old school pancake next area so goody</a></h3>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="next-post">#}
-{#                                <div class="item-content">#}
-{#                                    <p>NEXT POST</p>#}
-{#                                    <h3 class="post-title"><a href="#">Old school pancake next area so goody</a></h3>#}
-{#                                </div>#}
-{#                                <a href="#" class="item-figure"><img src="img/blog/next-post.jpg" alt="Post"></a>#}
-{#                            </div>#}
-{#                        </div>#}
+                        {#                        <div class="next-prev-post">#}
+                        {#                            <div class="prev-post">#}
+                        {#                                <a href="#" class="item-figure"><img src="img/blog/prev-post.jpg" alt="Post"></a>#}
+                        {#                                <div class="item-content">#}
+                        {#                                    <p>PREVIOUS POST</p>#}
+                        {#                                    <h3 class="post-title"><a href="#">Old school pancake next area so goody</a></h3>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                            <div class="next-post">#}
+                        {#                                <div class="item-content">#}
+                        {#                                    <p>NEXT POST</p>#}
+                        {#                                    <h3 class="post-title"><a href="#">Old school pancake next area so goody</a></h3>#}
+                        {#                                </div>#}
+                        {#                                <a href="#" class="item-figure"><img src="img/blog/next-post.jpg" alt="Post"></a>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                         <div class="recipe-reviews">
                             <div class="section-heading3 heading-dark">
                                 <h2 class="item-heading">RECIPE REVIEWS</h2>
                             </div>
                             <ul>
                                 {% for comment in object.comments.all %}
-                                <li class="reviews-single-item">
-                                    <div class="media media-none--xs">
-{#                                        <img src="img/blog/comment1.jpg" alt="Comment" class="media-img-auto">#}
-                                        <div class="media-body">
-                                            <h4 class="comment-title">{{ comment.author.email }}</h4>
-                                            <span class="post-date">{{ comment.created }}</span>
-                                            <p>{{ comment.text }}</p>
-{#                                            <ul class="item-rating">#}
-{#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
-{#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
-{#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
-{#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
-{#                                                <li class="single-item star-empty"><i class="fas fa-star"></i></li>#}
-{#                                                <li class="single-item"><span>9<span> / 10</span></span></li>#}
-{#                                            </ul>#}
-{#                                            <a href="#" class="item-btn">REPLY<i#}
-{#                                                    class="fas fa-long-arrow-alt-right"></i></a>#}
+                                    <li class="reviews-single-item">
+                                        <div class="media media-none--xs">
+                                            {#                                        <img src="img/blog/comment1.jpg" alt="Comment" class="media-img-auto">#}
+                                            <div class="media-body">
+                                                <h4 class="comment-title">{{ comment.author.email }}</h4>
+                                                <span class="post-date">{{ comment.created }}</span>
+                                                <p>{{ comment.text }}</p>
+                                                {#                                            <ul class="item-rating">#}
+                                                {#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
+                                                {#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
+                                                {#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
+                                                {#                                                <li class="single-item star-fill"><i class="fas fa-star"></i></li>#}
+                                                {#                                                <li class="single-item star-empty"><i class="fas fa-star"></i></li>#}
+                                                {#                                                <li class="single-item"><span>9<span> / 10</span></span></li>#}
+                                                {#                                            </ul>#}
+                                                {#                                            <a href="#" class="item-btn">REPLY<i#}
+                                                {#                                                    class="fas fa-long-arrow-alt-right"></i></a>#}
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -146,11 +146,11 @@
                             <div class="section-heading3 heading-dark">
                                 <h2 class="item-heading">LEAVE A REVIEW</h2>
                             </div>
-{#                            після заповнення форми йдемо по силці --#}
-{#                            path('comment/create/<int:post_id>/', #}
-{#                            views.CommentCreateView.as_view(), name="create_comment"),#}
-{#                            також передаємо айдішку поста якого ми коментуємо#}
-                            <form action="{% url 'create_comment' object.id %}"
+                            {#        після заповнення форми йдемо по силці --#}
+                            {#           path('comment/create/<int:post_id>/', #}
+                            {#         views.CommentCreateView.as_view(), name="create_comment"),#}
+                            {#       також передаємо айдішку поста якого ми коментуємо#}
+                             <form action="{% url 'create_comment' object.id %}"
                                   class="leave-form-box" method="post" >
                                 {% csrf_token %}
 {#                                рендеримо форму #}

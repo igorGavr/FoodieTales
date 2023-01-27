@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <section class="inner-page-banner bg-common" data-bg-image="img/figure/inner-page-banner1.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs-area">
+                        <h1>Account Page</h1>
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Inne Page Banner Area End Here -->
+    <div class="page-body">
+        <div class="container-xl" style=" margin: 100px 100px 100px 100px">
+            {#        {% include 'profile_menu.html' %}#}
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Account</h3>
+                            </div>
+                            <div class="card-body">
+                                {% if form.instance.profile_img %}
+                                    <img src="{{ form.instance.profile_img.url }}" alt=""
+                                         style="width: 100px; height: 100px; object-fit: cover;">
+                                {% endif %}
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Изображение профиля: </label>
+                                            {{ form.profile_img }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label> About: </label>
+                                            {{ form.about }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label> Instagram: </label>
+                                            {{ form.instagram }}
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Сохранить изменения
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,10 +2,11 @@ from wsgiref.util import request_uri
 
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 
 from django.views.generic import (
     TemplateView, ListView,
-    DetailView, FormView, UpdateView,
+    DetailView, FormView, UpdateView, CreateView,
 )
 from apps.blog.models import Category, Post, Comment
 
@@ -219,3 +220,4 @@ class CommentCreateView(LoginRequiredMixin, FormView):
     # в kwargs передаємо pk поста
     def get_success_url(self):
         return reverse_lazy("post_detail", kwargs={'pk': self.kwargs.get('post_id')})
+

@@ -27,3 +27,19 @@ class UserRegisterForm(UserCreationForm):
             "first_name",
             "last_name",
         ]
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "profile_img",
+            "about",
+            "instagram",
+        ]
+        form_control = {"class": "form-control"}
+        widgets={
+            "profile_img": forms.FileInput(attrs=form_control),
+            "about": forms.TextInput(attrs=form_control),
+            "instagram": forms.URLInput(attrs=form_control),
+        }

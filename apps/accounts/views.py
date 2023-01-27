@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 
-from django.views.generic import FormView, CreateView, TemplateView
+from django.views.generic import FormView, CreateView, TemplateView, UpdateView
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404
 
-from apps.accounts.forms import LoginForm, UserRegisterForm
+from apps.accounts.forms import LoginForm, UserRegisterForm, UserUpdateForm
 from apps.accounts.models import User
 
 
@@ -84,3 +84,10 @@ def activate_account(request, uidb64, token):
     raise Http404
 
 
+class UpdateUserView(UpdateView):
+    template_name = "profile.html"
+    form_class = UserUpdateForm
+    success_url = reverse_lazy("index")
+
+    def get_object(self):
+        return self.request.user

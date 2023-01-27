@@ -9,4 +9,5 @@ urlpatterns =[
     # приймаємо через URL два параметри - uidb64 і token
     path('account/confirm/<uidb64>/<token>/',
          views.activate_account, name='activate_account'),
+    path('user_profile/', views.UpdateUserView.as_view(), name="user_profile"),
 ]
