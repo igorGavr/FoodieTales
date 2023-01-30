@@ -36,7 +36,7 @@
                             <ul class="entry-meta">
 {#                                форматуємо дату  post.created|date:'Y-m-d H:i'  #}
                                 <li><a href="#"><i class="fas fa-clock"></i>{{ post.created }}</a></li>
-                                <li><a href="#"><i class="fas fa-user"></i>by <span>{{ post.author.username }}</span></a></li>
+                                <li><a href="{% url 'user_detail' post.author_id %}"><i class="fas fa-user"></i>by <span>{{ post.author.full_name }}</span></a></li>
                                 <li><a href="#"><i class="fas fa-comments"></i>Comments <span>(03)</span></a></li>
                                 <li><a href="#"><i class="fas fa-heart"></i><span>59</span></a></li>
                             </ul>

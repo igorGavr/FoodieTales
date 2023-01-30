@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 
 from django.views.generic import (
     FormView, CreateView, TemplateView, UpdateView,
@@ -121,4 +124,27 @@ class UsersSearchListView(ListView):
 class UserDetailView(DetailView):
     model = User
     template_name = "user_details.html"
+
+
+class FollowUser(LoginRequiredMixin, View):
+
+    def get(self, request, user_pk):
+        from_user = request.user
+        to_user = get_object_or_404(User, pk=user_pk)
+        if from_user not in to_user.followers.all():
+            messages.add_message(request, messages.SUCCESS, "вы успешно подписались")
+            to_user.followers.add(from_user)
+        return redirect("index")
+
+
+class UnfollowUser(LoginRequiredMixin, View):
+
+    def get(self, request, user_pk):
+        from_user = request.user
+        to_user = get_object_or_404(User, pk=user_pk)
+        if from_user in to_user.followers.all():
+            messages.add_message(request, messages.SUCCESS, "вы успешно отписались")
+            to_user.followers.remove(from_user)
+        return redirect("index")
+
 

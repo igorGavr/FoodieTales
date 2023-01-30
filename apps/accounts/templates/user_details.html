@@ -69,6 +69,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="d-flex mb-5">
+                        {% if request.user not in user.followers.all %}
+                            <a href="{% url 'follow' user.pk %}" class="btn btn-success w-50">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/mail -->
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="icon icon-tabler icon-tabler-checkbox" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <polyline points="9 11 12 14 20 6"></polyline>
+                                    <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"></path>
+                                </svg>
+                                Подписаться
+                            </a>
+                        {% else %}
+                            <a href="{% url 'unfollow' user.pk %}" class="btn btn-danger">
+                                Отписаться
+                            </a>
+                        {% endif %}
+                    </div>
+
                     <div class="section-heading heading-dark">
                         <h2 class="item-heading">36 RECIPES</h2>
                     </div>
@@ -94,7 +116,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -121,7 +144,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -148,7 +172,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -175,7 +200,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -202,7 +228,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -229,7 +256,8 @@
                                         outside crud mightily rigorouse. </p>
                                     <ul class="entry-meta">
                                         <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
+                                        <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a>
+                                        </li>
                                         <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
                                     </ul>
                                 </div>
@@ -276,7 +304,8 @@
                                     </div>
                                     <div class="item-content">
                                         <span class="ctg-name">BREAKFAST</span>
-                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a></h4>
+                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a>
+                                        </h4>
                                         <p>Definitiones noel ei verear intelle
                                             gatpri civibus consequat area
                                             refund efficiantue.</p>
@@ -288,7 +317,8 @@
                                     </div>
                                     <div class="item-content">
                                         <span class="ctg-name">DINNER</span>
-                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a></h4>
+                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a>
+                                        </h4>
                                         <p>Definitiones noel ei verear intelle
                                             gatpri civibus consequat area
                                             refund efficiantue.</p>
@@ -300,7 +330,8 @@
                                     </div>
                                     <div class="item-content">
                                         <span class="ctg-name">SALAD</span>
-                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a></h4>
+                                        <h4 class="item-title"><a href="single-recipe1.html">Baked Garlic Prawn</a>
+                                        </h4>
                                         <p>Definitiones noel ei verear intelle
                                             gatpri civibus consequat area
                                             refund efficiantue.</p>
@@ -315,10 +346,13 @@
                         </div>
                         <div class="widget-follow-us">
                             <ul>
-                                <li class="single-item"><a href="#"><i class="fab fa-facebook-f"></i>LIKE ME ON</a></li>
+                                <li class="single-item"><a href="#"><i class="fab fa-facebook-f"></i>LIKE ME ON</a>
+                                </li>
                                 <li class="single-item"><a href="#"><i class="fab fa-twitter"></i>LIKE ME</a></li>
-                                <li class="single-item"><a href="#"><i class="fab fa-linkedin-in"></i>LIKE ME</a></li>
-                                <li class="single-item"><a href="#"><i class="fab fa-pinterest-p"></i>LIKE ME</a></li>
+                                <li class="single-item"><a href="#"><i class="fab fa-linkedin-in"></i>LIKE ME</a>
+                                </li>
+                                <li class="single-item"><a href="#"><i class="fab fa-pinterest-p"></i>LIKE ME</a>
+                                </li>
                                 <li class="single-item"><a href="#"><i class="fab fa-instagram"></i>LIKE ME</a></li>
                                 <li class="single-item"><a href="#"><i class="fab fa-youtube"></i>Subscribe</a></li>
                             </ul>
@@ -339,7 +373,8 @@
                                         <div class="item-ctg">DESERT</div>
                                         <h4 class="item-title"><a href="#">Salami Oven Roasted are
                                             Mozzarella Oelette</a></h4>
-                                        <div class="item-post-by"><a href="single-blog.html"><i class="fas fa-user"></i><span>by</span>
+                                        <div class="item-post-by"><a href="single-blog.html"><i
+                                                class="fas fa-user"></i><span>by</span>
                                             John Martin</a></div>
                                     </div>
                                 </li>
@@ -352,7 +387,8 @@
                                         <div class="item-ctg">DESERT</div>
                                         <h4 class="item-title"><a href="#">Salami Oven Roasted are
                                             Mozzarella Oelette</a></h4>
-                                        <div class="item-post-by"><a href="single-blog.html"><i class="fas fa-user"></i><span>by</span>
+                                        <div class="item-post-by"><a href="single-blog.html"><i
+                                                class="fas fa-user"></i><span>by</span>
                                             John Martin</a></div>
                                     </div>
                                 </li>
@@ -365,7 +401,8 @@
                                         <div class="item-ctg">DESERT</div>
                                         <h4 class="item-title"><a href="#">Salami Oven Roasted are
                                             Mozzarella Oelette</a></h4>
-                                        <div class="item-post-by"><a href="single-blog.html"><i class="fas fa-user"></i><span>by</span>
+                                        <div class="item-post-by"><a href="single-blog.html"><i
+                                                class="fas fa-user"></i><span>by</span>
                                             John Martin</a></div>
                                     </div>
                                 </li>
@@ -378,7 +415,8 @@
                                         <div class="item-ctg">DESERT</div>
                                         <h4 class="item-title"><a href="#">Salami Oven Roasted are
                                             Mozzarella Oelette</a></h4>
-                                        <div class="item-post-by"><a href="single-blog.html"><i class="fas fa-user"></i><span>by</span>
+                                        <div class="item-post-by"><a href="single-blog.html"><i
+                                                class="fas fa-user"></i><span>by</span>
                                             John Martin</a></div>
                                     </div>
                                 </li>

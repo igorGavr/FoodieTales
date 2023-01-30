@@ -1,7 +1,8 @@
 from django.urls import path
 
 from apps.accounts import views
-urlpatterns =[
+
+urlpatterns = [
     path('login/', views.LoginView.as_view(), name="login"),
     path('logout/', views.user_logout, name="logout"),
     path('register/', views.UserRegisterView.as_view(), name="register"),
@@ -13,4 +14,6 @@ urlpatterns =[
     path('all_users/', views.AllUsersView.as_view(), name="all_users"),
     path('user_detail/<int:pk>/', views.UserDetailView.as_view(), name="user_detail"),
     path("search/", views.UsersSearchListView.as_view(), name="search_user"),
+    path("follow/<int:user_pk>/", views.FollowUser.as_view(), name="follow"),
+    path("unfollow/<int:user_pk>/", views.UnfollowUser.as_view(), name="unfollow"),
 ]
