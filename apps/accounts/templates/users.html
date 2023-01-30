@@ -28,16 +28,16 @@
                     <div class="author-box-layout1">
                         <div class="adv-search-wrap">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Author Name Search . . ."/>
-                                <div class="btn-group">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn-search"><i class="flaticon-search"></i>
-                                        </button>
+                                <form action="{% url 'search_user' %}" method="get">
+                                    <div class="mb-3">
+                                        <label  class="form-label">First name</label>
+                                        <input name="query" type="search" class="form-control"
+                                               placeholder="search">
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                        <h3 class="author-section-title">Total 1,050 Authors</h3>
+                        <h3 class="author-section-title">Totwsegsgal 1,050 Authors</h3>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tbody>

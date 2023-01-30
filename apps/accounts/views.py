@@ -99,3 +99,20 @@ class UpdateUserView(UpdateView):
 class AllUsersView(ListView):
     model = User
     template_name = "users.html"
+
+
+class UsersSearchListView(ListView):
+    template_name = "users.html"
+    model = User
+
+    def get_queryset(self):
+        search_text = self.request.GET.get("query")
+        if search_text:
+            search_users = User.objects.filter(first_name__icontains=search_text)
+            return search_users
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["search_text"] = self.request.GET.get("query")
+        return context
