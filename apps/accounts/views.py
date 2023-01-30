@@ -13,6 +13,7 @@ from django.http import HttpResponse, Http404
 
 from apps.accounts.forms import LoginForm, UserRegisterForm, UserUpdateForm
 from apps.accounts.models import User
+from apps.blog.models import Post
 
 
 class LoginView(FormView):
@@ -148,3 +149,15 @@ class UnfollowUser(LoginRequiredMixin, View):
         return redirect("index")
 
 
+class FollowingPostsView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = "following_post.html"
+
+    def get_queryset(self):
+        # наші підписки
+        following = self.request.user.following.all()
+        posts = Post.objects.filter(
+            author__in=following,
+            is_draft=False
+        )
+        return posts

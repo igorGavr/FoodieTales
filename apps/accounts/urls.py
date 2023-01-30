@@ -13,7 +13,8 @@ urlpatterns = [
     path('user_profile/', views.UpdateUserView.as_view(), name="user_profile"),
     path('all_users/', views.AllUsersView.as_view(), name="all_users"),
     path('user_detail/<int:pk>/', views.UserDetailView.as_view(), name="user_detail"),
-    path("search/", views.UsersSearchListView.as_view(), name="search_user"),
-    path("follow/<int:user_pk>/", views.FollowUser.as_view(), name="follow"),
-    path("unfollow/<int:user_pk>/", views.UnfollowUser.as_view(), name="unfollow"),
+    path('search/', views.UsersSearchListView.as_view(), name="search_user"),
+    path('follow/<int:user_pk>/', views.FollowUser.as_view(), name="follow"),
+    path('unfollow/<int:user_pk>/', views.UnfollowUser.as_view(), name="unfollow"),
+    path('following_posts/', views.FollowingPostsView.as_view(), name="following_posts"),
 ]
