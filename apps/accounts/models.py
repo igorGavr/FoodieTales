@@ -36,12 +36,17 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField("Електронна пошта", unique=True)
-    profile_img = models.ImageField(upload_to="users/profiles/", blank=True, null=True)
+    profile_img = models.ImageField(upload_to="users/profiles/",
+                                    blank=True, null=True)
     about = models.TextField("Про себе", null=True, blank=True)
     # null=True працює на рівні бази , а blank=True працює на рівні форми
     instagram = models.URLField(null=True, blank=True)
 
-    USERNAME_FIELD = 'email'  # Яке поле буде використане при логіні
+    following = models.ManyToManyField("self", blank=True, null=True,
+                 related_name="followers", symmetrical=False)
+
+    # Яке поле буде використане при логіні
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = UserManager()
@@ -52,3 +57,7 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    @property
+    def full_name(self):
+        return f"{self.first_name}  {self.last_name}"

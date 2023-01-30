@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 
-from django.views.generic import FormView, CreateView, TemplateView, UpdateView
+from django.views.generic import (
+    FormView, CreateView, TemplateView, UpdateView,
+    ListView,
+)
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404
@@ -91,3 +94,8 @@ class UpdateUserView(UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+class AllUsersView(ListView):
+    model = User
+    template_name = "users.html"
