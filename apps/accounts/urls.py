@@ -11,5 +11,6 @@ urlpatterns =[
          views.activate_account, name='activate_account'),
     path('user_profile/', views.UpdateUserView.as_view(), name="user_profile"),
     path('all_users/', views.AllUsersView.as_view(), name="all_users"),
+    path('user_detail/<int:pk>/', views.UserDetailView.as_view(), name="user_detail"),
     path("search/", views.UsersSearchListView.as_view(), name="search_user"),
 ]

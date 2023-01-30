@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic import (
     FormView, CreateView, TemplateView, UpdateView,
-    ListView,
+    ListView, DetailView,
 )
 from django.contrib.auth import login, logout, authenticate
 from django.urls import reverse_lazy
@@ -116,3 +116,9 @@ class UsersSearchListView(ListView):
         context = super().get_context_data(**kwargs)
         context["search_text"] = self.request.GET.get("query")
         return context
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = "user_details.html"
+
