@@ -50,6 +50,12 @@ class Post(models.Model):
         related_name="posts"
     )
     tags = models.ManyToManyField(Tag, related_name="tg_posts")
+    likes = models.ManyToManyField(
+        User,
+        related_name="user_likes",
+        null=True,
+        blank=True
+    )
 
     class Meta:
         verbose_name = "Пост"

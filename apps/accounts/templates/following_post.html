@@ -105,7 +105,7 @@
                             </div>
                             <div class="item-content">
                                 <span class="sub-title">{{ object.category }}</span>
-                                <h3 class="item-title"><a href="single-recipe1.html">{{ object.title }}</a></h3>
+                                <h3 class="item-title"><a href="{% url 'post_detail' object.id %}">{{ object.title }}</a></h3>
                                 <ul class="item-rating">
                                     <li class="star-fill"><i class="fas fa-star"></i></li>
                                     <li class="star-fill"><i class="fas fa-star"></i></li>
@@ -117,7 +117,7 @@
                                 <ul class="entry-meta">
                                     <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
                                     <li><a href="{% url 'user_detail' object.author_id %}"><i class="fas fa-user"></i>by <span>{{ object.author.full_name }}</span></a></li>
-                                    <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
+                                    <li><a href="#"><i class="fas fa-heart"></i><span>{{ object.likes.count }}</span> Likes</a></li>
                                 </ul>
                             </div>
                         </div>

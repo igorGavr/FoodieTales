@@ -9,16 +9,23 @@
                 <div class="col-lg-8">
                     <div class="single-blog-box">
                         <div class="main-figure">
-                            {#                            доступаємося до окремого поста#}
-                            <a href="single-blog.html"><img src="{{ object.image.url }}" alt="Blog"></a>
+                            {#    доступаємося до окремого поста#}
+                            <a href="#"><img src="{{ object.image.url }}" alt="Blog"></a>
                         </div>
                         <div class="blog-content">
                             <ul class="entry-meta">
                                 <li><a href="#"><i class="fas fa-clock"></i>{{ object.created }}</a></li>
-                                <li><a href="#"><i class="fas fa-user"></i>by <span>{{ object.author.username }}</span></a>
+                                <li><a href="#"><i class="fas fa-user"></i>by <span>{{ object.author.full_name }}</span></a>
                                 </li>
                                 <li><a href="#"><i class="fas fa-comments"></i>Comments <span>(03)</span></a></li>
-                                <li><a href="#"><i class="fas fa-heart"></i><span>59</span></a></li>
+                                {% if request.user in post.likes.all %}
+                                    <li><a href="{% url 'unlike_post' object.id %}">
+                                        <i class="fas fa-heart"></i><span>{{ object.likes.count }}</span></a></li>
+                                {% else %}
+                                    <li><a href="{% url 'like_post' object.id %}">
+                                        <i class="fas fa-heart"></i><span>{{ object.likes.count }}</span></a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <h3 class="item-title">{{ object.title }}</h3>
                             {#                            safe - для того щоб інфа яку ми додавали через ckeditor відображалася правильно#}
@@ -150,10 +157,10 @@
                             {#           path('comment/create/<int:post_id>/', #}
                             {#         views.CommentCreateView.as_view(), name="create_comment"),#}
                             {#       також передаємо айдішку поста якого ми коментуємо#}
-                             <form action="{% url 'create_comment' object.id %}"
-                                  class="leave-form-box" method="post" >
+                            <form action="{% url 'create_comment' object.id %}"
+                                  class="leave-form-box" method="post">
                                 {% csrf_token %}
-{#                                рендеримо форму #}
+                                {#                                рендеримо форму #}
                                 {{ comment_form }}
                                 <button type="submit" class="btn btn-outline-info">POST REVIEW</button>
                             </form>

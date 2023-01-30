@@ -1,5 +1,6 @@
 from wsgiref.util import request_uri
 
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
@@ -221,3 +222,21 @@ class CommentCreateView(LoginRequiredMixin, FormView):
     def get_success_url(self):
         return reverse_lazy("post_detail", kwargs={'pk': self.kwargs.get('post_id')})
 
+
+
+@login_required
+def like_post(request, post_pk):
+    post = get_object_or_404(Post, id=post_pk)
+    user = request.user
+    post.likes.add(user)
+    post.save()
+    return redirect("index")
+
+
+@login_required
+def unlike_post(request, post_pk):
+    post = get_object_or_404(Post,id=post_pk)
+    user = request.user
+    if user in post.likes.all():
+        post.likes.remove(user)
+    return redirect("index")
