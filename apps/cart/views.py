@@ -13,7 +13,6 @@ class CartPageView(TemplateView):
 
 
 class AdddCartView(View):
-
     def get(self, request, product_id):
         cart = Cart(request)
         product = Product.objects.get(id=product_id)
@@ -22,3 +21,18 @@ class AdddCartView(View):
             quantity=1
         )
         return redirect("cart")
+
+
+class DeleteProductCartView(View):
+    def get(self, request, product_id):
+        cart = Cart(request)
+        product = Product.objects.get(id=product_id)
+        cart.remove(product)
+        return redirect('cart')
+
+
+class ClearCartView(View):
+    def get(self, request):
+        cart = Cart(request)
+        cart.clear()
+        return redirect("product_list")

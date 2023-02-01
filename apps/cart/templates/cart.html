@@ -62,7 +62,7 @@
                                     </td>
                                     <td class="align-middle">
                                         <div class="d-flex flex-row">
-                                            <a href="" class="btn btn-outline-danger">#</a>
+                                            <a href="{% url 'delete_product' item.product.id %}" class="btn btn-outline-danger">#</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -70,6 +70,9 @@
 
                             </tbody>
                         </table>
+                    <div>
+                        <a href="{% url 'clear_cart' %}" class="btn btn-danger">Clear cart</a>
+                    </div>
                     </div>
 
                     <div class="card shadow-2-strong mb-5 mb-lg-0" style="border-radius: 16px;">
@@ -153,27 +156,27 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-3">
-                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                        <p class="mb-2">Subtotal</p>
-                                        <p class="mb-2">$23.49</p>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between" style="font-weight: 500;">
-                                        <p class="mb-0">Shipping</p>
-                                        <p class="mb-0">$2.99</p>
-                                    </div>
+{#                                    <div class="d-flex justify-content-between" style="font-weight: 500;">#}
+{#                                        <p class="mb-2">Subtotal</p>#}
+{#                                        <p class="mb-2">$23.49</p>#}
+{#                                    </div>#}
+{##}
+{#                                    <div class="d-flex justify-content-between" style="font-weight: 500;">#}
+{#                                        <p class="mb-0">Shipping</p>#}
+{#                                        <p class="mb-0">$2.99</p>#}
+{#                                    </div>#}
 
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
-                                        <p class="mb-2">Total (tax included)</p>
-                                        <p class="mb-2">$26.48</p>
+                                        <p class="mb-2">Total </p>
+                                        <p class="mb-2">${{ cart.get_total_price }}</p>
                                     </div>
 
                                     <button type="button" class="btn btn-primary btn-block btn-lg">
                                         <div class="d-flex justify-content-between">
                                             <span>Checkout</span>
-                                            <span>$26.48</span>
+                                            <span>${{ cart.get_total_price }}</span>
                                         </div>
                                     </button>
 
