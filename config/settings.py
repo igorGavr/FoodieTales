@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.shop',
     'apps.cart',
+    'apps.order',
 ]
 
 
