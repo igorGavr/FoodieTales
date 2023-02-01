@@ -369,69 +369,35 @@
                                     <div class="cart-wrap d-none d-lg-block">
                                         <div class="cart-info">
                                             <i class="flaticon-shopping-bag"></i>
-                                            <div class="cart-amount"><span class="item-currency">$</span>00</div>
+                                            <div class="cart-amount"><span class="item-currency">$</span>{{ cart.get_total_price }}</div>
                                         </div>
                                         <div class="cart-items">
-                                            <div class="cart-item">
+
+                                            {% for item in cart %}
+                                                <div class="cart-item">
                                                 <div class="cart-img">
-                                                    <a href="#">
-                                                        <img src="{% static 'img/product/top-product1.jpg' %}"
+                                                    <a href="{% url 'product_detail' item.product.id %}">
+                                                        <img src="{{ item.product.main_image.url }}"
                                                              alt="product" class="img-fluid">
                                                     </a>
                                                 </div>
                                                 <div class="cart-title">
-                                                    <a href="#">Pressure</a>
-                                                    <span>Code: STPT601</span>
+                                                    <a href="{% url 'product_detail' item.product.id %}">{{ item.product.name }}</a>
+                                                    <span>{{ item.product.id }}</span>
                                                 </div>
-                                                <div class="cart-quantity">X 1</div>
-                                                <div class="cart-price">$249</div>
+                                                <div class="cart-quantity">X {{ item.quantity }}</div>
+                                                <div class="cart-price">${{ item.total_price }}</div>
                                                 <div class="cart-trash">
-                                                    <a href="#">
+                                                    <a href="{% url 'delete_product' item.product.id %}">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="cart-item">
-                                                <div class="cart-img">
-                                                    <a href="#">
-                                                        <img src="{% static 'img/product/top-product2.jpg' %}"
-                                                             alt="product" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                                <div class="cart-title">
-                                                    <a href="#">Stethoscope</a>
-                                                    <span>Code: STPT602</span>
-                                                </div>
-                                                <div class="cart-quantity">X 1</div>
-                                                <div class="cart-price">$189</div>
-                                                <div class="cart-trash">
-                                                    <a href="#">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="cart-item">
-                                                <div class="cart-img">
-                                                    <a href="#">
-                                                        <img src="{% static 'img/product/top-product3.jpg' %}"
-                                                             alt="product" class="img-fluid">
-                                                    </a>
-                                                </div>
-                                                <div class="cart-title">
-                                                    <a href="#">Microscope</a>
-                                                    <span>Code: STPT603</span>
-                                                </div>
-                                                <div class="cart-quantity">X 2</div>
-                                                <div class="cart-price">$379</div>
-                                                <div class="cart-trash">
-                                                    <a href="#">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            {% endfor %}
+
                                             <div class="cart-item">
                                                 <div class="cart-btn">
-                                                    <a href="#" class="item-btn">View Cart</a>
+                                                    <a href="{% url 'cart' %}" class="item-btn">View Cart</a>
                                                     <a href="#" class="item-btn">Checkout</a>
                                                 </div>
                                             </div>

@@ -30,7 +30,7 @@ class DeleteProductCartView(View):
         cart = Cart(request)
         product = Product.objects.get(id=product_id)
         cart.remove(product)
-        return redirect('cart')
+        return redirect('product_list')
 
 
 class ClearCartView(View):
