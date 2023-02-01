@@ -16,23 +16,26 @@ class Cart():
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
+    # метод додавання в корзину
     def add(self, product, quantity, update_quantity=False):
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {"quantity":0, "price": str(product.price)}
 
         if update_quantity:
-            self.cart[product_id]["quantity"] = quantity
+            self.cart[product_id]["quantity"] = quantity # множине додавання
         else:
-            self.cart[product_id]["quantity"] += quantity
+            self.cart[product_id]["quantity"] += quantity # по одному
         self.save()
 
+    # видалення з корзини
     def remove(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
 
+    # дандер-метод ітерації
     def __iter__(self):
         product_ids = self.cart.keys()
 
@@ -48,9 +51,11 @@ class Cart():
             item["total_price"] = item["price"]*item["quantity"]
             yield item
 
+    # метод який повертає кількість товарів в корзині
     def __len__(self):
         return sum(item["quantity"] for item in self.cart.values())
 
+    # повертає загальну вартість покупок
     def get_total_price(self):
         # total_price = 0
         # for item in self.cart.values():
@@ -59,9 +64,11 @@ class Cart():
         return sum(
             Decimal(item["price"]) * item["quantity"] for item in self.cart.values())
 
+    # очищення корзини
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()
 
+    # метод збереження
     def save(self):
         self.session.modified = True
