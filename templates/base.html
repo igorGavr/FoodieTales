@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <!-- Custom Css -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    {#підключаємо toastr#}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- Modernizr Js -->
     <script src="{% static 'js/modernizr-3.6.0.min.js' %}"></script>
 </head>
@@ -570,9 +572,17 @@
 <script src="{% static 'js/smoothscroll.min.js' %}"></script>
 <!-- Custom Js -->
 <script src="{% static 'js/main.js' %}"></script>
-{% comment %}підключаємо ckeditor{% endcomment %}
+{#підключаємо ckeditor#}
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{#підключаємо toastr#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+{#блок який заповнимо кодом на apps.shop.product_list.html#}
+{% block javascript %}
+
+{% endblock %}
+
 </body>
 
 

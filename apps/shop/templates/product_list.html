@@ -47,11 +47,11 @@
                                 <div class="shop-box-layout1">
                                     <div class="mask-item bg--accent">
                                         <div class="item-figure">
-                                                <img src="{{ product.main_image.url }}" alt="Product">
+                                            <img src="{{ product.main_image.url }}" alt="Product">
                                         </div>
                                         <ul class="action-items">
                                             <li>
-                                                <a href="{% url 'add_to_cart' product.id %}">
+                                                <a href="{% url 'add_to_cart' product.id %}" class="add_cart">
                                                     <i class="fas fa-shopping-cart"></i>
                                                 </a>
                                             </li>
@@ -211,4 +211,14 @@
     </section>
     <!-- Shop Page Area End Here -->
 
+{% endblock %}
+
+{#при кліку на <a href="{% url 'add_to_cart' product.id %}"></a>  відпрацьовує даний блок#}
+{% block javascript %}
+    <script>
+        {% if messages %}
+            toastr.options.closeButton=true;
+           toastr.success("Ваш товар додано в корзину! ")
+        {% endif %}
+    </script>
 {% endblock %}
