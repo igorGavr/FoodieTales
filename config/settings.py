@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
+    'rest_framework',
+    'drf_yasg',
+
     #apps
     'apps.accounts',
     'apps.blog',
     'apps.shop',
     'apps.cart',
     'apps.order',
+    'apps.api',
 ]
 
 
