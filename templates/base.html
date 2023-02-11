@@ -294,6 +294,7 @@
                                                data-toggle="dropdown">{{ request.user.email }}</a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="{% url 'author_posts' %}">My posts</a>
+                                                <a class="dropdown-item" href="{% url 'my_orders' %}">My orders</a>
                                                 <a class="dropdown-item" href="{% url 'user_profile' %}">Profile</a>
                                                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                                             </div>

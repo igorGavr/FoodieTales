@@ -5,18 +5,18 @@ from apps.shop.models import Product
 
 
 class Order(models.Model):
-    STATUS_NEW = "NEW"
-    STATUS_CONFIRMED = "CONFIRMED"
-    STATUS_REJECTED = "REJECTED"
-    STATUS_DELIVERED = "DELIVERED"
-    STATUS_ARCHIVED = "ARCHIVED"
+    STATUS_NEW = "new"
+    STATUS_CONFIRMED = "confirmed"
+    STATUS_REJECTED = "rejected"
+    STATUS_DELIVERED = "delivered"
+    STATUS_ARCHIVED = "archived"
 
     STATUS_CHOICES = (
-        (STATUS_NEW, "новий"),
-        (STATUS_CONFIRMED,  "підтверджений"),
-        (STATUS_REJECTED , "відхилений"),
-        (STATUS_DELIVERED , "доставлений"),
-        (STATUS_ARCHIVED , "архівований"),
+        (STATUS_NEW, "Новый"),
+        (STATUS_CONFIRMED, "Подтвержден"),
+        (STATUS_REJECTED, "Отменен"),
+        (STATUS_DELIVERED, "Доставлен"),
+        (STATUS_ARCHIVED, "Архивирован"),
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")

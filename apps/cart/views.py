@@ -5,11 +5,18 @@ from django.views import View
 from django.views.generic import TemplateView
 
 from apps.cart.cart import Cart
+from apps.order.forms import OrderForm
 from apps.shop.models import Product
 from django.contrib import messages
 
+
 class CartPageView(TemplateView):
     template_name = "cart.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["order_form"] = OrderForm()
+        return context
 
 
 class AdddCartView(View):
