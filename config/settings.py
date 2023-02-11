@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'drf_yasg',
+    'rest_framework_simplejwt',
 
     #apps
     'apps.accounts',
@@ -222,3 +223,8 @@ CKEDITOR_CONFIGS = {
 }
 
 CART_SESSION_ID = 'cart'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',)
+}
